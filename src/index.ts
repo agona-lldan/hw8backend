@@ -1,5 +1,3 @@
-// потеря городов: 147043 - 109882 = 37161
-
 import { Elysia } from "elysia";
 import { AnswerType, IdToCity, IdToNames, SearchType } from "./types";
 import Fuse from "fuse.js";
