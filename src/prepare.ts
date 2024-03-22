@@ -1,16 +1,41 @@
-import { CityType, IdToCity, IdToNames, SearchType } from "./types";
+import {
+  CitiesType,
+  CountriesType,
+  IdToCityType,
+  IdToCountryType,
+  SearchType,
+} from "./types";
 
-const data: IdToCity = await Bun.file("./data/id2city.json").json();
+export function generateSearchList(cities: CitiesType) {
+  const result: SearchType[] = [];
+  for (const c of cities) {
+    result.push({
+      id: c.id,
+      value: c.name,
+    });
 
-const check: Set<string> = new Set();
-const re: string[] = [];
-for (const key in data) {
-  const k =
-    String(data[key].coordinates.lat) + " " + String(data[key].coordinates.lon);
-  if (check.has(k)) {
-    re.push(key);
-  } else {
-    check.add(k);
+    for (const n of c.alt) {
+      result.push({
+        id: c.id,
+        value: n,
+      });
+    }
   }
+  return result;
 }
-console.log(re.length);
+
+export function generateIdToCity(cities: CitiesType) {
+  const result: IdToCityType = {};
+  for (const c of cities) {
+    result[c.id] = c;
+  }
+  return result;
+}
+
+export function generateIdToCountries(countries: CountriesType) {
+  const result: IdToCountryType = {};
+  for (const c of countries) {
+    result[c.id] = c;
+  }
+  return result;
+}
