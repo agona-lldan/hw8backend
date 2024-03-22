@@ -3,7 +3,6 @@ import { cors } from "@elysiajs/cors";
 import Fuse from "fuse.js";
 import {
   AnswerItemSearchType,
-  AnswerSearchType,
   AnswerWeatherType,
   CacheType,
   CitiesType,
